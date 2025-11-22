@@ -1,0 +1,19 @@
+name: Notify main repo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send repo dispatch event to main repo
+        if: github.repository == 'EvenTorset/fxr-playground-localization'
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.FXRP_REPO_PAT }}" \
+            https://api.github.com/repos/EvenTorset/fxr-playground/dispatches \
+            -d '{"event_type": "locales-updated"}'

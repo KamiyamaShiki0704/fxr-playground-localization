@@ -1,0 +1,546 @@
+#region Locale info
+# This is the default locale. Other locales should be based on this one.
+# Contributors:
+# - CCCode
+
+#region Locale settings
+# This is the arguments passed to the Intl.DateTimeFormat constructor when a
+# date is converted to a short string. For example, these settings produce
+# strings like this: Nov 22, 2025
+# It is the same as calling the constructor like this:
+# new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+# For more information, check the MDN page:
+# https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat
+locale.formats.date:
+  - en-US
+  - year: numeric
+    month: short
+    day: numeric
+
+#region App
+app.title: FXR Playground
+app.desc: Create and modify FXR files for Dark Souls III, Sekiro, Elden Ring, Armored Core VI, and Elden Ring Nightreign
+
+
+#region Units
+unit.meter: "{n} m"
+unit.percent: "{n}%"
+unit.file: "{n} file | {n} files"
+
+#region Common
+common.or.keybind: "{first} or {second}"
+
+
+
+#region Message
+message.error.unknown: Unknown error.
+message.error.readFXR: "Failed to read FXR file: {error}"
+message.error.renameModifiedFile: Changes must be saved or reverted before renaming a file.
+message.error.renameFile.title: Failed to rename file
+message.error.duplicateFile.title: Failed to duplicate file
+message.info.processing: Processing...
+message.info.saveOrRevertChanges: Save or revert changes first
+message.info.needlessFXRConversion.title: No changes made
+message.info.needlessFXRConversion.content: |
+  '{file}' is already for {game}
+message.prompt.convertToWhichGame: What game do you want to convert this FXR to?
+message.prompt.deleteFile.title: Delete file
+message.prompt.deleteFile.content: |
+  Are you sure you want to delete '{file}'?
+message.prompt.rename.title: New file name
+message.success.convertFXR.title: FXR converted
+message.success.convertFXR.content: |
+  '{file}' converted to {game}
+
+#region Games
+game.DarkSouls3.name: Dark Souls III
+game.DarkSouls3.fullName: Dark Souls III
+game.Sekiro.name: Sekiro
+game.Sekiro.fullName: "Sekiro: Shadows Die Twice"
+game.EldenRing.name: Elden Ring
+game.EldenRing.fullName: Elden Ring
+game.ArmoredCore6.name: Armored Core VI
+game.ArmoredCore6.fullName: Armored Core VI Fires of Rubicon
+game.Nightreign.name: Nightreign
+game.Nightreign.fullName: Elden Ring Nightreign
+
+#region File type
+fileType.js: JavaScript
+fileType.ts: TypeScript
+
+
+#region Status bar
+statusBar.docsButton.label: FXR Documentation
+statusBar.settingsButton.label: Settings
+statusBar.runScript.label: Run script
+
+#region Settings menu
+settings.title: FXR Playground Settings
+settings.locale.title: Language
+settings.locale.desc: |
+  The language used in the FXR Playground UI.
+settings.defaultGame.title: Default game
+settings.defaultGame.desc: |
+  FXR files from Elden Ring and Armored Core VI are sometimes indistinguishable. This value will be used as a fallback if such a file is opened.
+
+  If a file like this is opened and it falls back to the wrong game, everything should still work fine as long as nothing new is added to the FXR. It is still recommended to either change this fallback value and reopen the file or convert the FXR to the correct game if this happens.
+settings.serializeFilter.title: Default JSON values
+settings.serializeFilter.desc: |
+  The serialized JSON form of FXR files usually contain a lot of redundant information in the form of properties with default values. This option allows you to filter out some or all of this information so that you are left with only what really matters. This can dramatically reduce the size of the JSON structure and make it easier to understand what an effect is actually doing.
+
+  This may make it more difficult to edit properties that have default values, because you may need to manually add those properties to the JSON.
+
+  This should not affect the FXR in any way. Since these properties have default values, the playground will automatically regenerate all of the information that is filtered out.
+settings.serializeFilter.option.None.title: Preserve
+settings.serializeFilter.option.None.desc: All properties and actions will be kept.
+settings.serializeFilter.option.Defaults.title: Strip all
+settings.serializeFilter.option.Defaults.desc: All properties with default values, default actions, and empty node lists will be removed.
+settings.serializeFilter.option.DefaultUnknowns.title: Strip unknown properties
+settings.serializeFilter.option.DefaultUnknowns.desc: Only unknown properties with default values and empty node lists will be removed.
+settings.serializeFilter.option.DefaultUnknownsAndActions.title: Strip actions and unknown properties
+settings.serializeFilter.option.DefaultUnknownsAndActions.desc: Only unknown properties with default values, default actions, and empty node lists will be removed.
+settings.webgpu.title: Structure View renderer
+settings.webgpu.desc: |
+  The Structure View graph can be rendered using different graphics APIs. This setting allows you to pick which one should be preferred.
+
+  Which option is best depends on your device and web browser. Try both and see what works best for you.
+settings.webgpu.option.true.title: WebGPU
+settings.webgpu.option.true.desc: Likely faster on modern GPUs, may not work in all browsers.
+settings.webgpu.option.false.title: WebGL
+settings.webgpu.option.false.desc: Well supported by all modern browsers.
+settings.defaultScriptType.title: Default script type
+settings.defaultScriptType.desc.option: |
+  This option simply controls what file extension is the default when creating a new script file. The file extension is used by the editor to determine the language of the script.
+settings.defaultScriptType.desc.js.title: JavaScript
+settings.defaultScriptType.desc.js.desc: |
+  A scripting language used almost everywhere on the web. It has a simpler syntax, so it can be easier to read if you're just starting out.
+settings.defaultScriptType.desc.ts.title: TypeScript
+settings.defaultScriptType.desc.ts.desc: |
+  JavaScript with type information and some extra features. The editor can use this to give better suggestions and spot mistakes, but the code can look a bit more complicated.
+settings.defaultScriptType.option.js.title: JavaScript
+settings.defaultScriptType.option.js.desc: Usually easier to start out with.
+settings.defaultScriptType.option.ts.title: TypeScript
+settings.defaultScriptType.option.ts.desc: More features and editor support.
+
+#region Reloader menu
+reloader.title: FXR WebSocket Reloader
+reloader.indicator.disconnected.label: Disconnected
+reloader.indicator.disconnected.desc: Not connected to a reloader.
+reloader.indicator.connecting.label: Connecting...
+reloader.indicator.connecting.desc: Attempting to connect to reloader...
+reloader.indicator.connected.desc: Connected to v{version} running in {game}.
+reloader.indicator.connected.features.title: "Feature support:"
+reloader.indicator.connected.features.reload: Reload FXRs
+reloader.indicator.connected.features.params: Respawn FXRs
+reloader.indicator.connected.features.extract: List and extract FXRs
+reloader.indicator.clickHint: Click to open reloader settings.
+reloader.reloadButton.label: Reload FXR
+reloader.reloadButton.desc.pre: "Reload {file} with the following settings:"
+reloader.reloadButton.desc.respawn.label: Respawn
+reloader.reloadButton.desc.respawn.option.no: No
+reloader.reloadButton.desc.respawn.option.weapon: As weapon SFX
+reloader.reloadButton.desc.respawn.option.lantern: As lantern SFX
+reloader.reloadButton.desc.weapon: Weapon
+reloader.reloadButton.desc.affinity: Affinity
+reloader.reloadButton.desc.dmypoly: Dummy poly
+reloader.reloadButton.desc.id: With ID
+reloader.disconnectButton.title: Disconnect
+reloader.disconnectButton.desc: Disconnect from the reloader.
+reloader.disconnectButton.autoConnectedHint: Turn off the auto-connect option to stay disconnected.
+reloader.autoConnectButton.title: "Auto-connect: {status}"
+reloader.autoConnectButton.status.enabled: Enabled
+reloader.autoConnectButton.status.disabled: Disabled
+reloader.autoConnectButton.desc: Automatically attempt to connect to the reloader while disconnected.
+reloader.settings.reloaderEndpoint.title: Server URL
+reloader.settings.reloaderEndpoint.desc: |
+  This controls what WebSocket server the reloader client will try to connect to. You will typically want to leave this as the default ({url}), but it can be modified to connect to different ports or remote servers.
+reloader.connectButton.label: Connect
+reloader.settings.reloaderRespawn.title: Respawn
+reloader.settings.reloaderRespawn.desc: |
+  For games where it is supported by the reloader, respawning is done by temporarily removing the SFX from a weapon or SpEffect and then adding it back.
+
+  This allows you view the effect you are working on without interacting with the game manually. Just put the game on a second monitor or force it to stay on top as a small window and you have a live preview of the effect.
+reloader.settings.reloaderRespawn.option.no.title: Do not respawn
+reloader.settings.reloaderRespawn.option.weapon.title: As weapon effect
+reloader.settings.reloaderRespawn.option.lantern.title: As lantern effect
+reloader.settings.reloaderWeapon.title: Weapon
+reloader.settings.reloaderWeapon.desc: |
+  You can respawn the effect on any weapon you want. The weapon does not need an effect to begin with, so even simple ones like unarmed (fists) can be chosen.
+
+  Weapons added through mods can be chosen by providing the weapon param row ID when the "Weapon ID" ({icon}) option is enabled.
+reloader.settings.reloaderUseWeaponID.title: Weapon ID
+reloader.settings.reloaderUseWeaponID.desc: |
+  Provide a weapon param row ID directly instead of using the drop-down menu. This allows you to apply the effect to weapons added through mods.
+reloader.settings.reloaderWeapon.label.affinity: Affinity
+reloader.settings.reloaderWeapon.label.weapon: Weapon
+reloader.settings.reloaderWeaponDummyPoly.title: Dummy poly
+reloader.settings.reloaderWeaponDummyPoly.desc: |
+  This controls which dummy poly (attachment point) on the weapon model to attach the effect to when respawning it.
+reloader.settings.reloaderLanternDummyPoly.title: Dummy poly
+reloader.settings.reloaderLanternDummyPoly.desc: |
+  This controls which dummy poly (attachment point) on the player character to attach the effect to when respawning it.
+reloader.settings.reloaderID.title: Forced ID
+reloader.settings.reloaderID.desc: |
+  This allows you to reload the effect with a different ID. This does not apply when reloading multipe effects at once.
+
+  The reloader can only reload effects that are currently loaded. This option can be used to ensure that the reload will always work, even if the effect's real ID is not currently loaded by the game.
+
+  ID 1 is usually a debug effect that is not used for anything, and it always exists in the vanilla game, so that is typically a good ID to use for this.
+reloader.settings.reloaderForceID.title: Force ID
+reloader.settings.reloaderForceID.desc: |
+  Reload the effect with a different ID.
+reloader.message.reloadSuccessful: FXR reloaded successfully. | {count} FXRs reloaded successfully.
+reloader.message.reloadError: "Failed to reload FXR: {err}"
+reloader.weaponIDLabel: "ID: {id}"
+
+#region Sidebar
+sidebar.scripts.title: Scripts
+sidebar.fxrFiles.title: FXR Files
+sidebar.workspace.title: Workspace
+sidebar.filter.hint: Search...
+sidebar.filter.clear: Clear filter
+sidebar.unsavedChanges: Has unsaved changes
+sidebar.scripts.button.saveAll.title: Save all modified files
+sidebar.scripts.button.revertAll.title: Revert all modified files
+sidebar.scripts.button.new.title: New script
+sidebar.scripts.button.saveAsNew.title: Save as new script
+sidebar.scripts.button.downloadAll.title: Download all
+sidebar.scripts.button.downloadAll.desc: |
+  Download a ZIP file containing all of the scripts in the list below.
+sidebar.fxrFiles.button.saveAll.title: Save all modified files
+sidebar.fxrFiles.button.revertAll.title: Revert all modified files
+sidebar.fxrFiles.button.fetch.title: Fetch FXR
+sidebar.fxrFiles.button.fetch.desc: |
+  Fetch a loaded FXR file directly from {game}'s memory.
+sidebar.fxrFiles.button.upload.title: Upload
+sidebar.fxrFiles.button.upload.desc: |
+  You can also drag and drop files into the page to upload them.
+sidebar.fxrFiles.button.downloadAll.title: Download all
+sidebar.fxrFiles.button.downloadAll.modifiedWarning: |
+  You must save or revert all changes to FXR files before downloading them.
+sidebar.fxrFiles.button.downloadAll.desc: |
+  Download a ZIP file containing all of the FXR files in the list below.
+sidebar.fxrFiles.button.deleteAll.title: Delete all
+sidebar.fxrFiles.button.deleteAll.desc: |
+  Clear the list of FXR files below.
+sidebar.common.ctxMenu.save.label: Save changes
+sidebar.common.ctxMenu.save.keybindCondition: when selected
+sidebar.common.ctxMenu.revert.label: Revert changes
+sidebar.common.ctxMenu.download.label: Download
+sidebar.common.ctxMenu.delete.label: Delete
+sidebar.common.ctxMenu.rename.label: Rename...
+sidebar.common.ctxMenu.copyPath.label: Copy path
+sidebar.scripts.ctxMenu.run.label: Run
+sidebar.scripts.ctxMenu.share.label: Share
+sidebar.scripts.ctxMenu.share.desc: Copy shareable link to script
+sidebar.fxrFiles.ctxMenu.convertToGame.label: Convert to game...
+sidebar.fxrFiles.ctxMenu.copyColorPalette.label: Copy color palette
+sidebar.fxrFiles.ctxMenu.pasteColorPalette.label: Paste color palette
+sidebar.fxrFiles.ctxMenu.duplicate.label: Duplicate...
+
+#region File selection
+fileSelection.status.title: Selected FXR | Selected FXRs
+fileSelection.status.label: "{count} selected files"
+fileSelection.status.desc.single: |
+  Click to open this file in the FXR editor, or use {selectionArray} in a script to get an array of the selected file names.
+
+  To select multiple, hold {ctrl} when clicking FXR files in the sidebar to toggle their selection, or hold {shift} while clicking to select a range.
+fileSelection.status.desc.multiple: |
+  Click to open the Bulk Actions dashboard, or use {selectionArray} in a script to get an array of the selected file names.
+
+#region Color panel
+panel.color.title: Color
+panel.color.action: Recolor
+panel.color.info: |
+  This panel allows you to recolor effects. The default settings are recommended in most cases.
+
+  Note that the color may be affected by properties that are not affected by this recoloring process. For example, if there is an {rgbMultiplier} property that is set to 0, that will cause the color to always be black. Another common issue is {blendMode} being set to an additive type, which causes the effect to just turn invisible if it is recolored black. You can look for and edit these properties in the JSON View.
+panel.color.function.label: Function
+panel.color.function.option.replace.title: Replace
+panel.color.function.option.replace.desc: Replace the original color with the target color.
+panel.color.function.option.colorPalette.title: Apply color palette
+panel.color.function.option.colorPalette.desc: Generate a color palette from a list of FXRs and apply it to this one.
+panel.color.function.option.multiply.title: Multiply
+panel.color.function.option.multiply.desc: Multiply the original color with the target color.
+panel.color.function.option.invert.title: Invert
+panel.color.function.option.invert.desc: Invert the original color.
+panel.color.function.option.grayscale.title: Grayscale
+panel.color.function.option.grayscale.desc: Remove all saturation, making the color grayscale.
+panel.color.function.option.mix.title: Mix
+panel.color.function.option.mix.desc: Mix the original color with the target color.
+panel.color.function.option.hueShift.title: Hue-shift
+panel.color.function.option.hueShift.desc: Hue-shift the original color.
+panel.color.function.option.replaceHue.title: Replace hue
+panel.color.function.option.replaceHue.desc: Replace the hue of the original color with that of the target color.
+panel.color.function.option.colorBlend.title: Replace hue and saturatio
+panel.color.function.option.colorBlend.desc: Replace the hue and saturation of the original color with that of the target color
+panel.color.function.option.scaleSaturation.title: Scale saturation
+panel.color.function.option.scaleSaturation.desc: Scale the saturation of the original color by a factor.
+panel.color.brightness.label: Brightness
+panel.color.brightness.option.brightness.title: Multiply brightness
+panel.color.brightness.option.brightness.desc: Multiply color by the brightness of the original color. Recommended in most cases.
+panel.color.brightness.option.scale.title: Maintain scale
+panel.color.brightness.option.scale.desc: Multiply color by the brightness of the original color only if it is greater than 1.
+panel.color.brightness.option.none.title: Replace brightness
+panel.color.brightness.option.none.desc: Ignore the brightness of the original color and use the target color without any changes.
+panel.color.alpha.label: Alpha
+panel.color.alpha.option.true.title: Multiply alpha
+panel.color.alpha.option.true.desc: Multiply the color's alpha by the alpha of the original color. Recommended in most cases.
+panel.color.alpha.option.false.title: Replace alpha
+panel.color.alpha.option.false.desc: Ignore the alpha of the original color and use the target color without any changes.
+panel.color.mixFactor.label: Factor
+panel.color.saturationFactor.label: Factor
+panel.color.paletteMode.label: Palette mode
+panel.color.paletteMode.option.Average.title: Average
+panel.color.paletteMode.option.Average.desc: Average all sets of colors found for each palette slot.
+panel.color.paletteMode.option.First.title: First
+panel.color.paletteMode.option.First.desc: Only add the first set of colors found for each palette slot.
+panel.color.paletteMode.option.Random.title: Random
+panel.color.paletteMode.option.Random.desc: Add all sets of colors found for each palette slots.
+panel.color.sampleFXRs.label: Sample FXRs
+
+#region Size panel
+panel.size.title: Size
+panel.size.action: Scale
+panel.size.info: |
+  This panel allows you to change the size of effects. Use the default settings unless you know what you are doing.
+panel.size.factor.label: Scaling factor
+panel.size.structure.title: Structure
+panel.size.structure.desc: |
+  Scale structural properties, like node translations and emitter sizes.
+panel.size.viewDistance.title: View distance-based
+panel.size.viewDistance.desc: |
+  Scale properties that are based on the distance from the camera, like the min/max render distance for particles.
+panel.size.particleModifier.title: Particle modifier
+panel.size.particleModifier.desc: |
+  Instead of scaling the size of the appearance actions, scale the particle modifier properties.
+
+#region Time panel
+panel.rateOfTime.title: Rate of Time
+panel.rateOfTime.action: Scale
+panel.rateOfTime.info: |
+  This panel allows you to modify the speed of effects. This is usually best done through editing the {rateOfTime} property in action 10500, but there are some cases where this works differently. The most obvious example is with tracer effects, which are not properly scaled by the {rateOfTime} property.
+panel.rateOfTime.factor.label: Time factor
+
+#region ID Offset panel
+panel.idOffset.title: ID Offset
+panel.idOffset.action: Offset IDs
+panel.idOffset.info.content: |
+  This panel allows you to offset the internal IDs of the selected FXR files.
+  For example, if you have an FXR file with an internal ID of 1234 and you offset it by 900000000, its new ID will be 900001234.
+
+  The files can also optionally be renamed to match their new IDs automatically.
+panel.idOffset.info.alert.title: Note
+panel.idOffset.info.alert.content: |
+  IDs are only valid in the range 1-999999999, so the modified IDs will be clamped to this range.
+
+  This means that offsetting multiple IDs may cause conflicts due to their modified IDs going out of bounds and getting clamped to the valid range.
+panel.idOffset.error.conflict: |
+  Conflicting file detected: '{file}' - No actions have been performed in order to avoid accidental overwrites.
+panel.idOffset.offset.label: Offset
+panel.idOffset.autoRename.label: Automatic rename
+panel.idOffset.autoRename.desc: |
+  Rename the files to match their new IDs automatically.
+
+  To avoid accidental overwrites, the process will fail without modifying anything if it would result in any file name conflicts.
+
+#region Panels common
+panel.common.showPreview: Show preview
+panel.common.hidePreview: Hide preview
+panel.common.resetOptions: Reset all options
+
+#region Welcome page
+page.welcome.section.updates.title: Updates
+page.welcome.section.updates.button.changelog.label: Changelog
+page.welcome.section.updates.button.changelog.tip: Last updated {date}
+page.welcome.section.updates.button.kofi.label: Support me on Ko-fi
+page.welcome.section.shortcuts.title: Shortcuts
+page.welcome.section.shortcuts.button.createNewScript.label: Create new script...
+page.welcome.section.shortcuts.button.uploadFiles.label: Upload files...
+page.welcome.section.shortcuts.button.fxrDocs.label: FXR Documentation
+page.welcome.section.shortcuts.button.fxrIDs.label: FXR IDs
+page.welcome.section.shortcuts.button.wiki.label: Souls Modding Wiki
+page.welcome.section.guides.title: Guides & Tutorials
+page.welcome.section.guides.button.more.label: More guides...
+
+#region FXR Views
+page.fxrViews.activeState.label: Active state
+page.fxrViews.activeState.state: State {index}
+page.fxrViews.activeState.conditionsTitle: "Conditions:"
+page.fxrViews.nav.dashboard.label: Dashboard
+page.fxrViews.nav.structure.label: Structure
+page.fxrViews.nav.json.label: JSON
+
+#region FXR Dashboard
+page.fxrViews.dashboard.sidebar.internalID.label: Internal ID
+page.fxrViews.dashboard.sidebar.internalID.mismatchWarning.title: Mismatched IDs
+page.fxrViews.dashboard.sidebar.internalID.mismatchWarning.desc: |
+  The internal ID does not match the ID in the file name.
+
+  This can cause several different issues. For example, it may cause the effect to not disappear when it is supposed to.
+page.fxrViews.dashboard.sidebar.internalID.mismatchWarning.clickHint: Click to choose how to resolve this issue.
+page.fxrViews.dashboard.sidebar.nodeCount.label: Node count
+page.fxrViews.dashboard.sidebar.sfxRefs.label: SFX refs.
+page.fxrViews.dashboard.sidebar.sfxRefs.ref.open: Open FXR
+page.fxrViews.dashboard.sidebar.sfxRefs.ref.fetchAndOpen: Fetch and open FXR
+page.fxrViews.dashboard.sidebar.sfxRefs.noValue: none
+page.fxrViews.dashboard.sidebar.textures.label: Textures
+page.fxrViews.dashboard.sidebar.textures.noValue: none
+page.fxrViews.dashboard.sidebar.models.label: Models
+page.fxrViews.dashboard.sidebar.models.noValue: none
+page.fxrViews.dashboard.sidebar.anibnds.label: Anibnds
+page.fxrViews.dashboard.sidebar.anibnds.noValue: none
+page.fxrViews.dashboard.sidebar.sounds.label: Sounds
+page.fxrViews.dashboard.sidebar.sounds.noValue: none
+page.fxrViews.dashboard.sidebar.nodeColors.label: Node colors
+page.fxrViews.dashboard.sidebar.nodeColors.noValue: none
+page.fxrViews.dashboard.sidebar.actions.download.label: Download
+page.fxrViews.dashboard.sidebar.actions.convertToGame.label: Convert to game...
+page.fxrViews.dashboard.sidebar.actions.replaceResources.label: Replace resources...
+page.fxrViews.dashboard.sidebar.actions.save.label: Save
+page.fxrViews.dashboard.sidebar.actions.save.noChanges: No changes to save
+page.fxrViews.dashboard.sidebar.actions.revert.label: Revert
+page.fxrViews.dashboard.sidebar.actions.revert.noChanges: No changes to revert
+page.fxrViews.dashboard.sidebar.actions.delete.label: Delete
+
+#region Structure View
+page.fxrViews.structure.node.root.title: Root
+page.fxrViews.structure.node.proxy.title: Proxy
+page.fxrViews.structure.node.levelsOfDetail.title: Levels of Detail
+page.fxrViews.structure.node.nodeEmitter.title: Node Emitter
+page.fxrViews.structure.node.nodeEmitter.subtitle.all: Emits all child nodes
+page.fxrViews.structure.node.nodeEmitter.subtitle.random: Emits a random child nod
+page.fxrViews.structure.node.nodeEmitter.subtitle.disabled: Disabled
+page.fxrViews.structure.node.nodeEmitter.subtitle.unknown: Unknown node selector
+page.fxrViews.structure.node.particle.title: Particle
+page.fxrViews.structure.node.particleEmitter.title: Particle Emitter
+page.fxrViews.structure.node.soundEffect.title: Sound Effect
+page.fxrViews.structure.node.transform.title: Transform
+page.fxrViews.structure.node.motion.title: Motion
+page.fxrViews.structure.node.attachToCamera.title: Attach to Camera
+page.fxrViews.structure.node.forceMotion.title: Force Motion
+page.fxrViews.structure.node.unimplemented.title: Unimplemented
+page.fxrViews.structure.node.unimplemented.subtitle: This is a bug! Report it!
+page.fxrViews.structure.node.unknownAppearance.title: |
+  Unknown/Generic
+  Appearance
+page.fxrViews.structure.node.empty.title: Empty
+page.fxrViews.structure.node.group.title: Group
+page.fxrViews.structure.node.unknown.title: Unknown
+page.fxrViews.structure.action.PointSprite: Point Sprite
+page.fxrViews.structure.action.Line: Line
+page.fxrViews.structure.action.QuadLine: Quad Line
+page.fxrViews.structure.action.BillboardEx: Billboard
+page.fxrViews.structure.action.MultiTextureBillboardEx: |
+  Multi-Texture
+  Billboard
+page.fxrViews.structure.action.Model: Model
+page.fxrViews.structure.action.LegacyTracer: Legacy Tracer
+page.fxrViews.structure.action.Distortion: Distortion
+page.fxrViews.structure.action.RadialBlur: Radial Blur
+page.fxrViews.structure.action.PointLight: Point Light
+page.fxrViews.structure.action.GPUStandardParticle: |
+  GPU Standard
+  Particle Emitter
+page.fxrViews.structure.action.GPUStandardCorrectParticle: |
+  GPU Standard
+  Particle Emitter
+page.fxrViews.structure.action.LightShaft: Light Shaft
+page.fxrViews.structure.action.GPUSparkParticle: |
+  GPU Spark
+  Particle Emitter
+page.fxrViews.structure.action.GPUSparkCorrectParticle: |
+  GPU Spark
+  Particle Emitter
+page.fxrViews.structure.action.Tracer: Tracer
+page.fxrViews.structure.action.WaterInteraction: Water Interaction
+page.fxrViews.structure.action.LensFlare: Lens Flare
+page.fxrViews.structure.action.RichModel: Rich Model
+page.fxrViews.structure.action.CancelForce: Cancel Force
+page.fxrViews.structure.action.WindForce: Wind Force
+page.fxrViews.structure.action.GravityForce: Gravity Force
+page.fxrViews.structure.action.ForceCollision: Force Collision
+page.fxrViews.structure.action.TurbulenceForce: Turbulence Force
+page.fxrViews.structure.action.SpotLight: Spot Light
+page.fxrViews.structure.ctxMenu.goToNodeInJSON: Go to node in JSON
+page.fxrViews.structure.ctxMenu.addChildNode.label: Add child node...
+page.fxrViews.structure.ctxMenu.addChildNode.option.basic: Basic Node
+page.fxrViews.structure.ctxMenu.addChildNode.option.proxy: Proxy Node
+page.fxrViews.structure.ctxMenu.addChildNode.option.lod: Levels of Detail Node
+page.fxrViews.structure.ctxMenu.addChildNode.option.nodeEmitter: Node Emitter Node
+page.fxrViews.structure.ctxMenu.copyBranch: Copy branch
+page.fxrViews.structure.ctxMenu.copyNode: Copy node
+page.fxrViews.structure.ctxMenu.cutNode: Cut branch
+page.fxrViews.structure.ctxMenu.pasteBranch: Paste branch as child
+page.fxrViews.structure.ctxMenu.copyColorPalette.label: Copy color palette...
+page.fxrViews.structure.ctxMenu.copyColorPalette.option.node: From node
+page.fxrViews.structure.ctxMenu.copyColorPalette.option.branch: From branch
+page.fxrViews.structure.ctxMenu.pasteColorPalette.label: Paste color palette...
+page.fxrViews.structure.ctxMenu.pasteColorPalette.option.node: On node
+page.fxrViews.structure.ctxMenu.pasteColorPalette.option.branch: On branch
+page.fxrViews.structure.ctxMenu.deleteBranch: Delete branch
+page.fxrViews.structure.edge.level: Level {level}
+page.fxrViews.structure.edge.invalidLevel: Invalid Level
+page.fxrViews.structure.edge.unkThreshold: Threshold n/a
+page.fxrViews.structure.edge.emit: Emit
+page.fxrViews.structure.view.autoLayout: Automatic layout
+page.fxrViews.structure.view.fitToGraph: Fit view to graph
+page.fxrViews.structure.selectedNode.path.title: Node path
+page.fxrViews.structure.selectedNode.path.desc: |
+  This is the path to the selected node from the FXR object. It can be used in a script to access the node:
+  {example}
+  Click to copy the path to the clipboard.
+page.fxrViews.structure.selectedNode.path.exampleComment: "Example: Find and scale node"
+page.fxrViews.structure.sidebar.nodeType.label: Node type
+page.fxrViews.structure.sidebar.node.label: Node
+page.fxrViews.structure.sidebar.emitter.label: Emitter
+page.fxrViews.structure.sidebar.particle.label: Particle
+page.fxrViews.structure.sidebar.unkField.label: Unknown field
+page.fxrViews.structure.sidebar.thresholds.label: Thresholds
+page.fxrViews.structure.sidebar.thresholds.level: Level {level}
+page.fxrViews.structure.sidebar.sfx.label: SFX
+page.fxrViews.structure.sidebar.sfx.fetchAndOpen: Fetch and open FXR
+page.fxrViews.structure.sidebar.sfx.open: Open FXR
+page.fxrViews.structure.sidebar.actions.target.label: Target
+page.fxrViews.structure.sidebar.actions.target.desc: This controls what the actions listed below apply to.
+page.fxrViews.structure.sidebar.actions.target.option.branch.title: Branch
+page.fxrViews.structure.sidebar.actions.target.option.branch.subtitle: Actions apply to this node and all descendant nodes.
+page.fxrViews.structure.sidebar.actions.target.option.node.title: Node
+page.fxrViews.structure.sidebar.actions.target.option.node.subtitle: Actions apply to this node, but not descendant nodes.
+page.fxrViews.structure.sidebar.actions.deleteBranch: Delete branch
+page.fxrViews.structure.sidebar.actions.deleteNode: Delete node
+
+#region Bulk Actions
+page.bulk.title: Bulk Actions
+page.bulk.selectedFiles.label: Selected files
+page.bulk.actions.reload.label: Reload
+page.bulk.actions.reload.notConnected: Not connected to reloader
+page.bulk.actions.reload.notSupported: Reloading is not supported for {game}
+page.bulk.actions.download.label: Download
+page.bulk.actions.convertToGame.label: Convert to game...
+page.bulk.actions.replaceResources.label: Replace resources...
+page.bulk.actions.save.label: Save
+page.bulk.actions.save.noChanges: No changes to save
+page.bulk.actions.revert.label: Revert
+page.bulk.actions.revert.noChanges: No changes to revert
+page.bulk.actions.delete.label: Delete
+
+#region Guides page
+page.guides.title: Guides
+page.guides.gettingStarted: Getting Started
+page.guides.commonTasks: Common Tasks
+page.guides.playgroundFeatures: Playground Features
+page.guides.fxrTopics: FXR Topics
+
+#region Fetch dialog
+dialog.fetch.title: Fetch FXR
+dialog.fetch.content: |
+  Fetch a loaded FXR file directly from {game}'s memory.
+dialog.fetch.id.label: FXR ID
+dialog.fetch.customName.label: Custom name
+dialog.fetch.customName.desc: Name the file manually instead of generating a name from the FXR ID.
+dialog.fetch.customName.inputLabel: Save to file name
+dialog.fetch.overwrite.label: Overwrite file
+dialog.fetch.action.overwrite: Overwrite
+dialog.fetch.action.confirm: Confirm
+dialog.fetch.action.cancel: Cancel
