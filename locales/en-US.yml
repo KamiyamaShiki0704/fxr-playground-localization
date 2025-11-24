@@ -79,6 +79,9 @@ settings.title: FXR Playground Settings
 settings.locale.title: Language
 settings.locale.desc: |
   The language used in the FXR Playground UI.
+settings.locale.tester.title: Open Localization Tester
+settings.locale.tester.desc: |
+  The Localization Tester is a tool for testing localization files for FXR Playground.
 settings.defaultGame.title: Default game
 settings.defaultGame.desc: |
   FXR files from Elden Ring and Armored Core VI are sometimes indistinguishable. This value will be used as a fallback if such a file is opened.
