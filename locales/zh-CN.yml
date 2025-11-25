@@ -14,7 +14,6 @@ app.desc: 创建和修改《黑暗之魂3》、《只狼》、《艾尔登法环
 
 #region Units
 unit.meter: "{n} 米"
-unit.percent: "{n}%"
 unit.file: "{n} 个文件 | {n} 个文件"
 
 #region Common
@@ -52,11 +51,6 @@ game.ArmoredCore6.fullName: 装甲核心6 境界天火 (Armored Core VI Fires of
 game.Nightreign.name: 黑夜君临
 game.Nightreign.fullName: 艾尔登法环：黑夜君临 (Elden Ring Nightreign)
 
-#region File type
-fileType.js: JavaScript
-fileType.ts: TypeScript
-
-
 #region Status bar
 statusBar.docsButton.label: FXR 文档
 statusBar.settingsButton.label: 设置
@@ -92,22 +86,16 @@ settings.webgpu.desc: |
   结构视图图表可以使用不同的图形 API 进行渲染。此设置允许您选择首选的 API。
 
   哪个选项最好取决于您的设备和网络浏览器。您可以尝试两种选项，看看哪种最适合您。
-settings.webgpu.option.true.title: WebGPU
 settings.webgpu.option.true.desc: 在现代 GPU 上可能更快，但未必在所有浏览器中都可用。
-settings.webgpu.option.false.title: WebGL
 settings.webgpu.option.false.desc: 所有现代浏览器均有良好支持。
 settings.defaultScriptType.title: 默认脚本类型
 settings.defaultScriptType.desc.option: |
   此选项控制创建新脚本文件时的默认文件扩展名。编辑器使用文件扩展名来确定脚本的语言。
-settings.defaultScriptType.desc.js.title: JavaScript
 settings.defaultScriptType.desc.js.desc: |
   一种在网络上几乎无处不在的脚本语言。它的语法更简单，如果您刚开始学习，它可能更容易阅读。
-settings.defaultScriptType.desc.ts.title: TypeScript
 settings.defaultScriptType.desc.ts.desc: |
   带有类型信息和一些额外功能的 JavaScript。编辑器可以利用它提供更好的建议并发现错误,但代码看起来可能会稍微复杂一些。
-settings.defaultScriptType.option.js.title: JavaScript
 settings.defaultScriptType.option.js.desc: 通常更容易上手。
-settings.defaultScriptType.option.ts.title: TypeScript
 settings.defaultScriptType.option.ts.desc: 更多功能和编辑器支持。
 
 #region Reloader menu
@@ -179,7 +167,6 @@ reloader.settings.reloaderForceID.desc: |
   使用不同的 ID 重载特效。
 reloader.message.reloadSuccessful: FXR 重载成功。 | {count} 个 FXR 重载成功。
 reloader.message.reloadError: "FXR 重载失败：{err}"
-reloader.weaponIDLabel: "ID: {id}"
 
 #region Sidebar
 sidebar.scripts.title: 脚本
@@ -356,7 +343,6 @@ page.fxrViews.activeState.state: 状态 {index}
 page.fxrViews.activeState.conditionsTitle: "条件："
 page.fxrViews.nav.dashboard.label: 仪表板
 page.fxrViews.nav.structure.label: 结构
-page.fxrViews.nav.json.label: JSON
 
 #region FXR Dashboard
 page.fxrViews.dashboard.sidebar.internalID.label: 内部 ID
@@ -497,7 +483,6 @@ page.fxrViews.structure.sidebar.particle.label: 粒子
 page.fxrViews.structure.sidebar.unkField.label: 未知字段
 page.fxrViews.structure.sidebar.thresholds.label: 阈值
 page.fxrViews.structure.sidebar.thresholds.level: 等级 {level}
-page.fxrViews.structure.sidebar.sfx.label: SFX
 page.fxrViews.structure.sidebar.sfx.fetchAndOpen: 获取并打开 FXR
 page.fxrViews.structure.sidebar.sfx.open: 打开 FXR
 page.fxrViews.structure.sidebar.actions.target.label: 目标
@@ -535,7 +520,6 @@ page.guides.fxrTopics: FXR 专题
 dialog.fetch.title: 获取 FXR
 dialog.fetch.content: |
   直接从 {game} 的内存中获取已加载的 FXR 文件。
-dialog.fetch.id.label: FXR ID
 dialog.fetch.customName.label: 自定义名称
 dialog.fetch.customName.desc: 手动命名文件，而不是根据 FXR ID 生成名称。
 dialog.fetch.customName.inputLabel: 保存为文件名
