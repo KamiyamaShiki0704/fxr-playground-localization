@@ -424,7 +424,7 @@ page.fxrViews.structure.node.group.title: 组
 page.fxrViews.structure.node.unknown.title: 未知
 page.fxrViews.structure.action.PointSprite: |
   点精灵
- (Point Sprite)
+  (Point Sprite)
 page.fxrViews.structure.action.Line: 线
 page.fxrViews.structure.action.QuadLine: 四边形线
 page.fxrViews.structure.action.BillboardEx: |
