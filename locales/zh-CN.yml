@@ -433,7 +433,7 @@ page.fxrViews.structure.action.BillboardEx: |
 page.fxrViews.structure.action.MultiTextureBillboardEx: 多纹理公告板
 page.fxrViews.structure.action.Model: 模型
 page.fxrViews.structure.action.LegacyTracer: |
-  旧拖轨
+  旧拖尾
   (Legacy Tracer)
 page.fxrViews.structure.action.Distortion: 扭曲
 page.fxrViews.structure.action.RadialBlur: 径向模糊
@@ -446,11 +446,11 @@ page.fxrViews.structure.action.LightShaft: |
 page.fxrViews.structure.action.GPUSparkParticle: GPU火花粒子发射器
 page.fxrViews.structure.action.GPUSparkCorrectParticle: GPU火花粒子发射器
 page.fxrViews.structure.action.Tracer: |
-  拖轨
+  拖尾
   (Tracer)
 page.fxrViews.structure.action.WaterInteraction: 水面交互
 page.fxrViews.structure.action.LensFlare: |
-  镜头光斑
+  镜头光晕
   (Lens Flare)
 page.fxrViews.structure.action.RichModel: |
   丰富模型
