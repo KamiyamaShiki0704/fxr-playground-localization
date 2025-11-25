@@ -511,7 +511,7 @@ page.bulk.title: 批量操作
 page.bulk.selectedFiles.label: 选中的文件
 page.bulk.actions.reload.label: 重载
 page.bulk.actions.reload.notConnected: 未连接到重载器
-page.bulk.actions.reload.notSupported: {game} 不支持重载
+page.bulk.actions.reload.notSupported: 该 {game} 不支持重载
 page.bulk.actions.download.label: 下载
 page.bulk.actions.convertToGame.label: 转换为游戏...
 page.bulk.actions.replaceResources.label: 替换资源...
